@@ -22,7 +22,6 @@
         android:gravity="center"
         android:textSize="@dimen/text_size_xl"
         android:textStyle="bold" />
-
     <EditText
         android:id="@+id/edt_email"
         android:layout_width="match_parent"
@@ -83,6 +82,7 @@
                 android:textColor="@color/txt_color_red"
                 android:textSize="@dimen/text_size_md"
                 android:text="@string/forgot_password"
+                android:textStyle="bold"
                 android:id="@+id/txt_forgot_password"
                 android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -123,7 +123,7 @@
             android:textSize="@dimen/text_size_md"
             tools:ignore="TextSizeCheck" />
         <TextView
-            android:id="@+id/link_sign_up"
+            android:id="@+id/txt_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -151,5 +151,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:strokeColor="@color/red_300"
         app:strokeWidth="1dp" />
+    <ProgressBar
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

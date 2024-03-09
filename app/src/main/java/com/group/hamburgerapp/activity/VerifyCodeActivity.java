@@ -43,7 +43,6 @@ public class VerifyCodeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String code = getIntent().getStringExtra("code");
-                Toast.makeText(getApplicationContext(),code,Toast.LENGTH_SHORT);
                 verifyPhoneNumberWithCode(code,txt_otp.getText().toString().trim());
             }
         });
@@ -62,17 +61,17 @@ public class VerifyCodeActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = task.getResult().getUser();
-                             Toast.makeText(getApplicationContext(),"Thành công",Toast.LENGTH_SHORT);
-//                            Intent intent = new Intent(VerifyCodeActivity.this,LoginActivity.class);
-//                            startActivity(intent);
+                             Toast.makeText(getApplicationContext(),"Thành công",Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(VerifyCodeActivity.this,ResetPasswordActivity.class);
+                            startActivity(intent);
                             // Update UI
                         } else {
                             // Sign in failed, display a message and update the UI
-                            Toast.makeText(getApplicationContext(),"Mã OTP không chính xác",Toast.LENGTH_SHORT);
+                            Toast.makeText(getApplicationContext(),"Mã OTP không chính xác",Toast.LENGTH_SHORT).show();
 
-                            Log.w("CHECK ERROR", "signInWithCredential:failure", task.getException());
+//                            Log.w("CHECK ERROR", "signInWithCredential:failure", task.getException());
                             if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
-                                Toast.makeText(getApplicationContext(), "The verification code entered was invalid",Toast.LENGTH_SHORT);
+//                                Toast.makeText(getApplicationContext(), "The verification code entered was invalid",Toast.LENGTH_SHORT).show();
                             }
                         }
                     }

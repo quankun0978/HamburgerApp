@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,6 +31,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private Button btn_confirm ;
     private FirebaseAuth mAuth;
     private EditText edt_phone ;
+    private ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     void init(){
         btn_confirm=findViewById(R.id.btn_confirm);
         edt_phone=findViewById(R.id.edt_phone);
+        progressBar =findViewById(R.id.progress_bar);
     }
     void initListener(){
         btn_confirm.setOnClickListener(new View.OnClickListener() {
@@ -52,8 +55,8 @@ public class ForgotPasswordActivity extends AppCompatActivity {
         });
     }
     private void handleOnClickConfirm() {
-        Log.d("TEST" ,"hihi");
         handleSendOtp(edt_phone.getText().toString().trim());
+        progressBar.setVisibility(View.VISIBLE);
     }
     private void handleSendOtp(String phone) {
         PhoneAuthOptions options =
@@ -65,11 +68,13 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                         .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
                             @Override
                             public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                                Log.e("TEST" ,"send success");
+
+
                             }
                             @Override
                             public void onVerificationFailed(@NonNull FirebaseException e) {
-                                Log.e("TEST" ,"send fail");
+                                progressBar.setVisibility(View.INVISIBLE);
+                                Toast.makeText(getApplicationContext(),"Vui lòng nhập số điện thoại chính xác",Toast.LENGTH_SHORT).show();
                             }
                             @Override
                             public void onCodeSent(@NonNull String verificationId,
@@ -77,10 +82,11 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                                 // The SMS verification code has been sent to the provided phone number, we
                                 // now need to ask the user to enter the code and then construct a credential
                                 // by combining the code with a verification ID.
-                                Log.e("CODE", "onCodeSent:" + verificationId);
+                                progressBar.setVisibility(View.INVISIBLE);
                                 Intent intent = new Intent(ForgotPasswordActivity.this,VerifyCodeActivity.class);
-                                intent.putExtra("code",verificationId);
                                 startActivity(intent);
+                                Log.e("CODE", "onCodeSent:" + verificationId);
+
                                 // Save verification ID and resending token so we can use them later
                             }
                         })          // OnVerificationStateChangedCallbacks
