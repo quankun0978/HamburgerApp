@@ -1,14 +1,21 @@
 package com.group.hamburgerapp.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.group.hamburgerapp.R;
+import com.group.hamburgerapp.activity.ChangePasswordActivity;
+import com.group.hamburgerapp.activity.UpdateInformationActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -17,28 +24,20 @@ import com.group.hamburgerapp.R;
  */
 public class AccountFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    private Button btn_tracking;
+    private Button btn_change_pw;
+    private Button btn_edit_acc;
+    private ImageButton btn_setting;
 
     public AccountFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment AccountFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static AccountFragment newInstance(String param1, String param2) {
         AccountFragment fragment = new AccountFragment();
         Bundle args = new Bundle();
@@ -60,7 +59,41 @@ public class AccountFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_account, container, false);
+        View view = inflater.inflate(R.layout.fragment_account, container, false);
+        init(view);
+        btn_tracking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // TODO: Handle tracking button click
+            }
+        });
+        btn_change_pw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), ChangePasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+        btn_edit_acc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), UpdateInformationActivity.class);
+                startActivity(intent);
+            }
+        });
+        btn_setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        return view;
+    }
+
+    private void init(View view) {
+        btn_tracking = view.findViewById(R.id.btn_tracking);
+        btn_change_pw = view.findViewById(R.id.btn_change_pw);
+        btn_edit_acc = view.findViewById(R.id.btn_edit_acc);
+        btn_setting = view.findViewById(R.id.btn_setting);
     }
 }

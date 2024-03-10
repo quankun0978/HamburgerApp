@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">BunBuzz</string>
+    <string name="back">back</string>
     <string name="login">Đăng nhập</string>
+    <string name="logout">Đăng xuất</string>
     <string name="register">Đăng ký</string>
     <string name="contine_client">Tiếp tục như khách vãng lai</string>
     <string name="login_to_endow">Đăng nhập để nhận thêm ưu đãi</string>
@@ -19,7 +21,17 @@
     <string name="confirm_password">Nhập lại mật khẩu</string>
     <string name="name">Họ và tên</string>
     <string name="address">Địa chỉ</string>
+    <string name="facebook">facebook</string>
+    <string name="instagram">instagram</string>
+    <string name="setting">Cài đặt</string>
+    <string name="change_password">Đổi mật khẩu</string>
+    <string name="account">Tài khoản</string>
+    <string name="update_information">Cập nhật thông tin</string>
+    <string name="update">Cập nhật</string>
+
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>
