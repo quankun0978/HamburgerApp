@@ -18,11 +18,16 @@
         android:text="@string/confirm"
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_xl"
+<<<<<<< HEAD
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginTop="@dimen/text_size_lg" />
 
+=======
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent" />
+>>>>>>> main
     <EditText
         android:id="@+id/edt_otp"
         android:layout_width="match_parent"

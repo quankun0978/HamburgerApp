@@ -24,11 +24,15 @@
             android:textColor="@color/black"
             android:textSize="@dimen/text_size_xl"
             android:textStyle="bold"
+<<<<<<< HEAD
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_goneMarginTop="@dimen/text_size_lg" />
 
+=======
+            app:layout_constraintStart_toStartOf="parent" />
+>>>>>>> main
         <EditText
             android:id="@+id/edt_name"
             android:layout_width="match_parent"
@@ -169,7 +173,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <ImageButton
             android:id="@+id/btn_back"

@@ -15,6 +15,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.group.hamburgerapp.R;
 import com.group.hamburgerapp.activity.LoginActivity;
+import com.group.hamburgerapp.database.UserDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,7 +23,6 @@ import com.group.hamburgerapp.activity.LoginActivity;
  */
 public class SettingFragment extends Fragment {
     private Button btn_logout;
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,11 +31,10 @@ public class SettingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        FirebaseUser currentUser = mAuth.getCurrentUser();
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
 
         btn_logout = view.findViewById(R.id.btn_logout);
-        if(currentUser!=null){
+        if(UserDatabase.checkLogin()){
             btn_logout.setVisibility(View.VISIBLE);
             btn_logout.setOnClickListener(new View.OnClickListener() {
                 @Override

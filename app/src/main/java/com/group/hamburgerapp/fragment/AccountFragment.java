@@ -1,22 +1,50 @@
 package com.group.hamburgerapp.fragment;
 
+<<<<<<< HEAD
 import android.content.Intent;
+=======
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
+>>>>>>> main
 import android.os.Bundle;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+<<<<<<< HEAD
 import android.widget.ImageButton;
+=======
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ProgressBar;
+>>>>>>> main
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.group.hamburgerapp.R;
+<<<<<<< HEAD
 import com.group.hamburgerapp.activity.ChangePasswordActivity;
 import com.group.hamburgerapp.activity.OrderTrackingActivity;
 import com.group.hamburgerapp.activity.UpdateInformationActivity;
+=======
+import com.group.hamburgerapp.database.ProductDatabase;
+import com.group.hamburgerapp.entity.Product;
+import com.group.hamburgerapp.ultil.Ultils;
+
+import java.io.IOException;
+>>>>>>> main
 
 /**
  * A simple {@link Fragment} subclass.
@@ -25,6 +53,7 @@ import com.group.hamburgerapp.activity.UpdateInformationActivity;
  */
 public class AccountFragment extends Fragment {
 
+<<<<<<< HEAD
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -34,16 +63,22 @@ public class AccountFragment extends Fragment {
     private Button btn_change_pw;
     private Button btn_edit_acc;
     private ImageButton btn_setting;
+=======
+>>>>>>> main
 
     public AccountFragment() {
         // Required empty public constructor
     }
 
+<<<<<<< HEAD
+=======
+
+    // TODO: Rename and change types and number of parameters
+>>>>>>> main
     public static AccountFragment newInstance(String param1, String param2) {
         AccountFragment fragment = new AccountFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,14 +87,14 @@ public class AccountFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+<<<<<<< HEAD
         View view = inflater.inflate(R.layout.fragment_account, container, false);
         init(view);
         btn_tracking.setOnClickListener(new View.OnClickListener() {
@@ -98,5 +133,13 @@ public class AccountFragment extends Fragment {
         btn_change_pw = view.findViewById(R.id.btn_change_pw);
         btn_edit_acc = view.findViewById(R.id.btn_edit_acc);
         btn_setting = view.findViewById(R.id.btn_setting);
+=======
+        // Inflate the layout for this fragment
+
+        return inflater.inflate(R.layout.fragment_account, container, false);
+>>>>>>> main
     }
+
+
+
 }

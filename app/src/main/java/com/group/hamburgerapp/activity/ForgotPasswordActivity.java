@@ -1,8 +1,10 @@
 package com.group.hamburgerapp.activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +15,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseException;
@@ -23,15 +27,29 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.group.hamburgerapp.R;
+import com.group.hamburgerapp.common.Validate;
+import com.group.hamburgerapp.database.UserDatabase;
+import com.group.hamburgerapp.entity.User;
+import com.group.hamburgerapp.ultil.FuncHelper;
+import com.group.hamburgerapp.ultil.Ultils;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
     private Button btn_confirm ;
+    private EditText edt_email ;
     private FirebaseAuth mAuth;
-    private EditText edt_phone ;
     private ProgressBar progressBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +61,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     }
     void init(){
         btn_confirm=findViewById(R.id.btn_confirm);
-        edt_phone=findViewById(R.id.edt_phone);
+        edt_email=findViewById(R.id.edt_email);
         progressBar =findViewById(R.id.progress_bar);
     }
     void initListener(){
@@ -54,43 +72,55 @@ public class ForgotPasswordActivity extends AppCompatActivity {
             }
         });
     }
-    private void handleOnClickConfirm() {
-        handleSendOtp(edt_phone.getText().toString().trim());
-        progressBar.setVisibility(View.VISIBLE);
+private void handleOnClickConfirm() {
+    if (FuncHelper.validateEmail(edt_email.getText().toString(),getApplicationContext())) {
+        UserDatabase.getUserByEmail(edt_email.getText().toString(), getApplicationContext(), new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                User user = dataSnapshot.getValue(User.class);
+                if(user!=null){
+                    ResetPassword(edt_email.getText().toString());
+                    progressBar.setVisibility(View.VISIBLE);
+                    return;
+                }
+                Ultils.displayToast(getApplicationContext(),"Tài khoản đã tồn tại trong hệ thống");
+            }
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            }
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+
+            }
+        });
     }
-    private void handleSendOtp(String phone) {
-        PhoneAuthOptions options =
-                PhoneAuthOptions.newBuilder(mAuth)
-                        .setPhoneNumber(phone)       // Phone number to verify
-                        .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                        .setActivity(this)                 // (optional) Activity for callback binding
-                        // If no activity is passed, reCAPTCHA verification can not be used.
-                        .setCallbacks(new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-                            @Override
-                            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-
-
-                            }
-                            @Override
-                            public void onVerificationFailed(@NonNull FirebaseException e) {
-                                progressBar.setVisibility(View.INVISIBLE);
-                                Toast.makeText(getApplicationContext(),"Vui lòng nhập số điện thoại chính xác",Toast.LENGTH_SHORT).show();
-                            }
-                            @Override
-                            public void onCodeSent(@NonNull String verificationId,
-                                                   @NonNull PhoneAuthProvider.ForceResendingToken token) {
-                                // The SMS verification code has been sent to the provided phone number, we
-                                // now need to ask the user to enter the code and then construct a credential
-                                // by combining the code with a verification ID.
-                                progressBar.setVisibility(View.INVISIBLE);
-                                Intent intent = new Intent(ForgotPasswordActivity.this,VerifyCodeActivity.class);
-                                startActivity(intent);
-                                Log.e("CODE", "onCodeSent:" + verificationId);
-
-                                // Save verification ID and resending token so we can use them later
-                            }
-                        })          // OnVerificationStateChangedCallbacks
-                        .build();
-        PhoneAuthProvider.verifyPhoneNumber(options);
+}
+    private void ResetPassword(String email) {
+        mAuth.sendPasswordResetEmail(email)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Ultils.displayToast(getApplicationContext(),"Link đặt lại mật khẩu đã được gửi tới Email đăng ký của bạn");
+                        Intent intent = new Intent(ForgotPasswordActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        finishAffinity();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Ultils.displayToast(getApplicationContext(),"Vui lòng nhập email chính xác");
+                        progressBar.setVisibility(View.INVISIBLE);
+                    }
+                });
     }
 }

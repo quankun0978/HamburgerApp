@@ -20,12 +20,16 @@
         android:textColor="@color/black"
         android:textSize="@dimen/text_size_xl"
         android:textStyle="bold"
+<<<<<<< HEAD
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_goneMarginTop="@dimen/text_size_lg" />
 
+=======
+        app:layout_constraintStart_toStartOf="parent" />
+>>>>>>> main
     <EditText
         android:id="@+id/edt_email"
         android:layout_width="match_parent"
@@ -71,8 +75,13 @@
         android:orientation="horizontal"
 
         app:layout_constraintLeft_toLeftOf="parent"
+<<<<<<< HEAD
         app:layout_constraintTop_toBottomOf="@+id/edt_password">
 
+=======
+        app:layout_constraintTop_toBottomOf="@+id/edt_password"
+        app:layout_constraintStart_toStartOf="parent">
+>>>>>>> main
         <TextView
             android:id="@+id/sign_in_text_error"
             android:layout_width="0dp"
@@ -166,6 +175,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:visibility="invisible"
+<<<<<<< HEAD
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -181,5 +191,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/baseline_arrow_back_24" />
+=======
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+>>>>>>> main
 
 </androidx.constraintlayout.widget.ConstraintLayout>

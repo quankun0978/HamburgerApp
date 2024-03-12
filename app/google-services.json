@@ -1,18 +1,32 @@
 {
   "project_info": {
     "project_number": "262433207185",
+    "firebase_url": "https://hamburgerapp-98e0b-default-rtdb.firebaseio.com",
     "project_id": "hamburgerapp-98e0b",
     "storage_bucket": "hamburgerapp-98e0b.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:262433207185:android:d3c7f040086e4f6b10a030",
+        "mobilesdk_app_id": "1:262433207185:android:4bddf30eb53ef47110a030",
         "android_client_info": {
           "package_name": "com.group.hamburgerapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "262433207185-26hadmdi1lv5hlqlklmsah57ig167ujv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.group.hamburgerapp",
+            "certificate_hash": "fd5799e720949d61975f3c77c7077cf6af33f302"
+          }
+        },
+        {
+          "client_id": "262433207185-q13937vbc5v922ei19s3pfoc3qg5hl32.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCmDBNp8QoG6ZO530suMo3zw4_JfeP9jmw"
@@ -20,7 +34,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "262433207185-q13937vbc5v922ei19s3pfoc3qg5hl32.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }

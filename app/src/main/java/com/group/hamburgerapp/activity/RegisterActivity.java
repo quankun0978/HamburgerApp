@@ -1,6 +1,7 @@
 package com.group.hamburgerapp.activity;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -17,17 +18,25 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.group.hamburgerapp.R;
 import com.group.hamburgerapp.common.Validate;
 import com.group.hamburgerapp.database.UserDatabase;
 import com.group.hamburgerapp.entity.User;
 import com.group.hamburgerapp.ultil.FuncHelper;
+import com.group.hamburgerapp.ultil.Ultils;
 
 public class RegisterActivity extends AppCompatActivity {
     private  Button btn_register;
     private  EditText edt_name,edt_email,edt_address,edt_phone,edt_password;
     private ProgressBar progressBar;
     private FirebaseAuth mAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,14 +63,31 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
     void handleOnClickRegister(){
-        boolean name= FuncHelper.validateName(edt_name.getText().toString(),getApplicationContext());
-        boolean email =FuncHelper.validateEmail(edt_email.getText().toString(),getApplicationContext());
-        boolean phone = FuncHelper.validatePhone(edt_phone.getText().toString(),getApplicationContext());
-        boolean address=  FuncHelper.validateAddress(edt_address.getText().toString(),getApplicationContext());
-        boolean password=  FuncHelper.validatePassword(edt_password.getText().toString(),getApplicationContext());
-        if(name&&email&&phone&&address&&password){
-            handleCreateUser(edt_email.getText().toString(),edt_password.getText().toString());
-            progressBar.setVisibility(View.VISIBLE);
+        if(FuncHelper.validateName(edt_name.getText().toString(),getApplicationContext())&&FuncHelper.validateEmail(edt_email.getText().toString(),getApplicationContext())&&FuncHelper.validatePhone(edt_phone.getText().toString(),getApplicationContext())&&FuncHelper.validatePhone(edt_phone.getText().toString(),getApplicationContext())&&FuncHelper.validatePassword(edt_password.getText().toString(),getApplicationContext())){
+            UserDatabase.getUserByEmail(edt_email.getText().toString(), getApplicationContext(), new ChildEventListener() {
+                @Override
+                public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                    User user = dataSnapshot.getValue(User.class);
+                    if(user!=null){
+                        Ultils.displayToast(getApplicationContext(),"Email này đã tồn tại trong hệ thống");
+                        return;
+                    }
+                   handleCreateUser(edt_email.getText().toString(),edt_password.getText().toString());
+                    progressBar.setVisibility(View.VISIBLE);
+                }
+                @Override
+                public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                }
+                @Override
+                public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
+                }
+                @Override
+                public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                }
+            });
         }
     }
     void handleCreateUser(String email,String password){
@@ -88,6 +114,4 @@ public class RegisterActivity extends AppCompatActivity {
                     }
                 });
     }
-
-
 }
