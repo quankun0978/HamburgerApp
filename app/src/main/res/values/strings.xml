@@ -28,6 +28,9 @@
     <string name="account">Tài khoản</string>
     <string name="update_information">Cập nhật thông tin</string>
     <string name="update">Cập nhật</string>
+    <string name="order_tracking">Theo dõi đơn hàng</string>
+    <string name="tab1">Đang đến</string>
+    <string name="tab2">Lịch sử</string>
 
 
     <!-- TODO: Remove or change this placeholder text -->

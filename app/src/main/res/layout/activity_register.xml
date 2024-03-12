@@ -6,28 +6,29 @@
     android:background="@color/white"
     android:layout_height="match_parent"
    >
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
         android:paddingHorizontal="@dimen/text_size_md"
         tools:context=".activity.RegisterActivity">
+
         <TextView
             android:id="@+id/title_login"
             android:layout_width="match_parent"
-            app:layout_goneMarginTop="@dimen/text_size_lg"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            android:layout_marginTop="@dimen/text_size_md"
+            android:layout_marginTop="64dp"
             android:fontFamily="@font/lobster_regular"
-            android:text="@string/register"
             android:gravity="center"
+            android:text="@string/register"
+            android:textColor="@color/black"
             android:textSize="@dimen/text_size_xl"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginTop="@dimen/text_size_lg" />
+
         <EditText
             android:id="@+id/edt_name"
             android:layout_width="match_parent"
@@ -169,6 +170,18 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:visibility="invisible" />
+
+        <ImageButton
+            android:id="@+id/btn_back"
+            android:layout_width="37dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_arrow_back_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

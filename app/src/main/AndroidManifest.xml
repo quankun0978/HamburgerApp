@@ -22,6 +22,9 @@
         android:theme="@style/Theme.HamburgerApp"
         tools:targetApi="31">
         <activity
+            android:name=".activity.OrderTrackingActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.PopUpMessageAcivity"
             android:exported="false" />
         <activity

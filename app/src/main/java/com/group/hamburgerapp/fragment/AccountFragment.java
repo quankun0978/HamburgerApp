@@ -15,6 +15,7 @@ import android.widget.ImageButton;
 
 import com.group.hamburgerapp.R;
 import com.group.hamburgerapp.activity.ChangePasswordActivity;
+import com.group.hamburgerapp.activity.OrderTrackingActivity;
 import com.group.hamburgerapp.activity.UpdateInformationActivity;
 
 /**
@@ -64,7 +65,8 @@ public class AccountFragment extends Fragment {
         btn_tracking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // TODO: Handle tracking button click
+                Intent intent = new Intent(getContext(), OrderTrackingActivity.class);
+                startActivity(intent);
             }
         });
         btn_change_pw.setOnClickListener(new View.OnClickListener() {
@@ -87,6 +89,7 @@ public class AccountFragment extends Fragment {
 
             }
         });
+
         return view;
     }
 
