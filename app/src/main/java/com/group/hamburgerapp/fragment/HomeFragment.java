@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment {
 
     private static RecyclerView rcvProduct;
     private static   ProductAdapter productAdapter;
-    private static  List<Product> listProduct;
+  private static  List<Product> listProduct ;
 
 
     public static HomeFragment newInstance(String param1, String param2) {
@@ -67,7 +67,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         init();
-        handleGetProduct();
+
         return view;
     }
     void init(){
@@ -78,11 +78,45 @@ public class HomeFragment extends Fragment {
         // Inflate the layout for this fragment
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
         rcvProduct.addItemDecoration(dividerItemDecoration);
-        listProduct= ProductDatabase.getListProduct();
+        listProduct = new ArrayList<>();
         productAdapter = new ProductAdapter(listProduct);
-    }
-    void handleGetProduct(){
+        getAllProduct();
         rcvProduct.setAdapter(productAdapter);
-        ProductDatabase.getAllProduct(productAdapter);
     }
+
+    public static void getAllProduct(){
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("product");
+//        Query query = usersRef.orderByChild("email").equalTo(email);
+        usersRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                Product product = snapshot.getValue(Product.class);
+                if(product!=null){
+                    listProduct.add(product);
+                    productAdapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+    }
+
 }

@@ -6,12 +6,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
-import android.widget.TableLayout;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.group.hamburgerapp.R;
-import com.group.hamburgerapp.activity.adaptertab.ViewPagerAdapter;
+import com.group.hamburgerapp.adapter.ViewPagerAdapter;
 
 public class OrderTrackingActivity extends AppCompatActivity {
     private ViewPagerAdapter mAdapter;

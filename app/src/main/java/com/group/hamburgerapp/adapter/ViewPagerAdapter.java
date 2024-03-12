@@ -1,4 +1,4 @@
-package com.group.hamburgerapp.activity.adaptertab;
+package com.group.hamburgerapp.adapter;
 
 import android.util.Log;
 
@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.group.hamburgerapp.fragment.fragmenttab.ComingFragment;
-import com.group.hamburgerapp.fragment.fragmenttab.HistoryFragment;
+import com.group.hamburgerapp.fragment.ComingFragment;
+import com.group.hamburgerapp.fragment.HistoryFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {

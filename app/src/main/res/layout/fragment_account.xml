@@ -5,7 +5,6 @@
     android:id="@+id/id_account"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-<<<<<<< HEAD
     android:backgroundTint="@color/gray"
     android:elevation="@dimen/text_size_xl"
     tools:context=".fragment.AccountFragment"

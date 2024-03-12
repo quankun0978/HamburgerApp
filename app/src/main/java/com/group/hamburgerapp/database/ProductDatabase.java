@@ -40,6 +40,7 @@ public class ProductDatabase {
         Product product = new Product(productId, name, description, category, path, price);
         newProductRef.setValue(product);
     }
+
     public static void getAllProduct(ProductAdapter productAdapter){
         DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("product");
 //        Query query = usersRef.orderByChild("email").equalTo(email);
@@ -48,7 +49,7 @@ public class ProductDatabase {
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 Product product = snapshot.getValue(Product.class);
                 if(product!=null){
-                   listProduct.add(product);
+                    listProduct.add(product);
                     productAdapter.notifyDataSetChanged();
                 }
             }

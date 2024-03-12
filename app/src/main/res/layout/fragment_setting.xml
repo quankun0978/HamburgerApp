@@ -8,14 +8,10 @@
     tools:context=".fragment.SettingFragment">
 
     <!-- TODO: Update blank fragment layout -->
-<<<<<<< HEAD
-=======
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="Hello setting" />
->>>>>>> main
+
+
+
+
 
     <Button
         android:id="@+id/btn_logout"

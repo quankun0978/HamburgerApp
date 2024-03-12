@@ -1,4 +1,4 @@
-package com.group.hamburgerapp.fragment.fragmenttab;
+package com.group.hamburgerapp.fragment;
 
 import android.os.Bundle;
 
