@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.group.hamburgerapp.fragment.fragmenttab.Tab1Fragment;
-import com.group.hamburgerapp.fragment.fragmenttab.Tab2Fragment;
+import com.group.hamburgerapp.fragment.fragmenttab.ComingFragment;
+import com.group.hamburgerapp.fragment.fragmenttab.HistoryFragment;
 
 public class ViewPagerAdapter extends FragmentStateAdapter {
     public ViewPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
@@ -20,9 +20,9 @@ public class ViewPagerAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         Log.d("POSITION", String.valueOf(position));
         if(position==0){
-            return Tab1Fragment.newInstance();
+            return ComingFragment.newInstance();
         }
-        return Tab2Fragment.newInstance();
+        return HistoryFragment.newInstance();
     }
 
     @Override

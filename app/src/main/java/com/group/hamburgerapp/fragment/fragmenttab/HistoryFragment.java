@@ -9,12 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.group.hamburgerapp.R;
-public class Tab2Fragment extends Fragment {
-    public Tab2Fragment() {
+public class HistoryFragment extends Fragment {
+    public HistoryFragment() {
     }
 
-    public static Tab2Fragment newInstance() {
-        Tab2Fragment fragment = new Tab2Fragment();
+    public static HistoryFragment newInstance() {
+        HistoryFragment fragment = new HistoryFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -31,6 +31,6 @@ public class Tab2Fragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tab2, container, false);
+        return inflater.inflate(R.layout.fragment_history, container, false);
     }
 }
