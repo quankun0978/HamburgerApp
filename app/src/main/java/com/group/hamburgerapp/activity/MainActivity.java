@@ -16,9 +16,11 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.group.hamburgerapp.R;
+import com.group.hamburgerapp.database.UserDatabase;
 import com.group.hamburgerapp.databinding.ActivityMainBinding;
 import com.group.hamburgerapp.fragment.AccountFragment;
 import com.group.hamburgerapp.fragment.HomeFragment;
+import com.group.hamburgerapp.fragment.MenuFragment;
 import com.group.hamburgerapp.fragment.SettingFragment;
 import com.group.hamburgerapp.fragment.VoucherFragment;
 
@@ -26,7 +28,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private TextView txt_email;
-    private FirebaseAuth mAuth;
     private ActivityMainBinding binding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,18 +37,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
         ChangeFragment(new HomeFragment());
         init();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser!=null){
-            txt_email.setText(currentUser.getEmail().toString());
-        }
-        else {
-            txt_email.setText("khách");
+        if(UserDatabase.checkLogin()){
+            txt_email.setText(UserDatabase.getCurrentUser().getEmail().toString());
         }
         initListener();
     }
     void init(){
-        txt_email=findViewById(R.id.txt_email);
-        mAuth = FirebaseAuth.getInstance();
+        txt_email=findViewById(R.id.txt_sub_title);
     }
     void initListener(){
         binding.bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -62,6 +58,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 if(item.getItemId()==R.id.voucher){
                     ChangeFragment(new VoucherFragment());
+                }
+                if(item.getItemId()==R.id.menu){
+                    ChangeFragment(new MenuFragment());
                 }
                 if(item.getItemId()==R.id.homeMain){
                     ChangeFragment(new HomeFragment());

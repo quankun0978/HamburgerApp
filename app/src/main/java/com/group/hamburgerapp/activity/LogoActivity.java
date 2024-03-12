@@ -10,20 +10,18 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.group.hamburgerapp.R;
+import com.group.hamburgerapp.database.UserDatabase;
 
 public class LogoActivity extends AppCompatActivity {
-    private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_logo);
-        init();
         Handler handler = new Handler(Looper.getMainLooper());
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                FirebaseUser currentUser = mAuth.getCurrentUser();
-                if(currentUser != null){
+                if(UserDatabase.checkLogin()){
                     Intent intent = new Intent(LogoActivity.this, MainActivity.class);
                     startActivity(intent);
                     finishAffinity();
@@ -35,8 +33,5 @@ public class LogoActivity extends AppCompatActivity {
                 }
             }
         }, 3000);
-    }
-    void init(){
-        mAuth = FirebaseAuth.getInstance();
     }
 }

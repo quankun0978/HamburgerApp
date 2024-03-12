@@ -7,6 +7,7 @@
         android:name="android.hardware.telephony"
         android:required="false" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.READ_SMS" />
@@ -22,10 +23,7 @@
         android:theme="@style/Theme.HamburgerApp"
         tools:targetApi="31">
         <activity
-            android:name=".activity.VoucherActivity2"
-            android:exported="false" />
-        <activity
-            android:name=".VoucherActivity"
+            android:name=".activity.AddProductActivity"
             android:exported="false" />
         <activity
             android:name=".activity.ResetPasswordActivity"

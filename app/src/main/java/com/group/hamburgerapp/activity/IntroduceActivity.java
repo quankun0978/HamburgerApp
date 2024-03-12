@@ -12,7 +12,6 @@ import com.group.hamburgerapp.ultil.Ultils;
 
 public class IntroduceActivity extends AppCompatActivity {
     private  Button btn_login,btn_continue;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
